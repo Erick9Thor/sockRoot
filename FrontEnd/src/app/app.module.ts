@@ -17,6 +17,8 @@ import { ChatComponent } from './components/chat/chat.component';
 import { ListaUsuariosComponent } from './components/lista-usuarios/lista-usuarios.component';
 import { LoginComponent } from './pages/login/login.component';
 import { MensajesComponent } from './pages/mensajes/mensajes.component';
+import { InjectableRxStompConfig, RxStompService, rxStompServiceFactory } from '@stomp/ng2-stompjs';
+import { myRxStompConfig } from 'src/core/configurtions/stomp-configuration';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,17 @@ import { MensajesComponent } from './pages/mensajes/mensajes.component';
     SocketIoModule.forRoot(config),
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: InjectableRxStompConfig,
+      useValue: myRxStompConfig
+    },
+    {
+      provide: RxStompService,
+      useFactory: rxStompServiceFactory,
+      deps: [InjectableRxStompConfig]
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

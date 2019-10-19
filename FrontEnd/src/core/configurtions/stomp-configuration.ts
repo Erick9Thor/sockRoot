@@ -1,27 +1,33 @@
-import * as RxStomp from '@stomp/rx-stomp';
+import { InjectableRxStompConfig } from '@stomp/ng2-stompjs';
 import * as SockJS from 'sockjs-client';
-import { brokerEndPoint } from '../constants/constants';
-import { environment } from 'src/environments/environment';
 
+export const myRxStompConfig: InjectableRxStompConfig = {
 
-
-export const rxStompConfig: RxStomp.RxStompConfig = {
-
+    // Headers
+    // Typical keys: login, passcode, host
     connectHeaders: {
         login: 'guest',
         passcode: 'guest'
     },
 
-    webSocketFactory: () => {
-        return new SockJS(environment.wsUrlStomp + brokerEndPoint);
-    },
+    // How often to heartbeat?
+    // Interval in milliseconds, set to 0 to disable
+    heartbeatIncoming: 0, // Typical value 0 - disabled
+    heartbeatOutgoing: 20000, // Typical value 20000 - every 20 seconds
 
-    // Keep it off for production, it can be quit verbose
-    // Skip this key to disable
-    debug: function (str) {
-        console.log('STOMP: ' + str);
-    },
-
-    // If disconnected, it will retry after 200ms
+    // Wait in milliseconds before attempting auto reconnect
+    // Set to 0 to disable
+    // Typical value 500 (500 milli seconds)
     reconnectDelay: 200,
+
+    webSocketFactory: () => {
+        return new SockJS('http://localhost:8080/gs-guide-websocket');
+    },
+
+    // Will log diagnostics on console
+    // It can be quite verbose, not recommended in production
+    // Skip this key to stop logging to console
+    debug: (msg: string): void => {
+        console.log(new Date(), msg);
+    }
 };

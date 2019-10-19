@@ -1,1 +1,1 @@
-export const brokerEndPoint = '/socket';
+export const brokerEndPoint = '/gs-guide-websocket';
