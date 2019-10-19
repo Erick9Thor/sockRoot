@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WebsocketService } from './services/websocket-service-SocketIO/websocket.service';
 import { ChatService } from './services/chat-service/chat.service';
-import { RxStompService } from '@stomp/ng2-stompjs';
-
 
 @Component({
   selector: 'app-root',
@@ -12,7 +10,6 @@ import { RxStompService } from '@stomp/ng2-stompjs';
 export class AppComponent implements OnInit {
 
   constructor(
-    private rxStompService: RxStompService,
     public wsService: WebsocketService,
     public chatServie: ChatService
   ) { }
