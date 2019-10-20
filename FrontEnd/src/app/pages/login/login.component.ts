@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { WebsocketServiceStompJS } from 'src/app/services/websocket-service-StompJS/websocket.service';
+import { Component } from '@angular/core';
 import { WebsocketService } from '../../services/websocket-service-SocketIO/websocket.service';
 import { Router } from '@angular/router';
 
@@ -7,30 +8,21 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   nombre = '';
 
-
   constructor(
-    public wsService: WebsocketService,
+    // public wsService: WebsocketService,
+    public wsService: WebsocketServiceStompJS,
     private router: Router
   ) { }
 
-  ngOnInit() {
-  }
-
-
   ingresar() {
-
-    this.wsService.loginWS( this.nombre )
-      .then( () => {
-
+    this.wsService.loginWS(this.nombre)
+      .then(() => {
+        console.log('works?');
         this.router.navigateByUrl('/mensajes');
-
       });
-
   }
-
-
 }

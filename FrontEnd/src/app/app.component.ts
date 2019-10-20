@@ -10,18 +10,13 @@ import { ChatService } from './services/chat-service/chat.service';
 export class AppComponent implements OnInit {
 
   constructor(
-    public wsService: WebsocketService,
+    // public wsService: WebsocketService,
     public chatServie: ChatService
   ) { }
 
   ngOnInit() {
-
     this.chatServie.getMessagesPrivate().subscribe( msg => {
-
       console.log(msg);
-
     });
-
   }
-
 }

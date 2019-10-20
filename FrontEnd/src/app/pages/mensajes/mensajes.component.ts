@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { WebsocketServiceStompJS } from 'src/app/services/websocket-service-StompJS/websocket.service';
+import { Component } from '@angular/core';
 import { WebsocketService } from '../../services/websocket-service-SocketIO/websocket.service';
 
 @Component({
@@ -6,13 +7,11 @@ import { WebsocketService } from '../../services/websocket-service-SocketIO/webs
   templateUrl: './mensajes.component.html',
   styleUrls: ['./mensajes.component.css']
 })
-export class MensajesComponent implements OnInit {
+export class MensajesComponent {
 
   constructor(
-    public wsService: WebsocketService
+    // public wsService: WebsocketService
+    public wsService: WebsocketServiceStompJS
   ) { }
-
-  ngOnInit() {
-  }
 
 }

@@ -1,3 +1,4 @@
+import { WebsocketServiceStompJS } from 'src/app/services/websocket-service-StompJS/websocket.service';
 import { Component } from '@angular/core';
 import { WebsocketService } from '../../services/websocket-service-SocketIO/websocket.service';
 
@@ -9,6 +10,7 @@ import { WebsocketService } from '../../services/websocket-service-SocketIO/webs
 export class FooterComponent  {
 
   constructor(
-    public wsService: WebsocketService
+    // public wsService: WebsocketService
+    public wsService: WebsocketServiceStompJS
   ) { }
 }
